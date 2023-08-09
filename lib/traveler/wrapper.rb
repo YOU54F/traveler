@@ -13,7 +13,7 @@ module Traveler
     end
 
     def writeable?
-      if File.exists?(@file) && File.read(@file) !~ /#{SIGNATURE}/m
+      if File.exist?(@file) && File.read(@file) !~ /#{SIGNATURE}/m
         puts warn('
           "%s" file exists and is not a Traveler wrapper.
           If you still want to use it as a Traveler wrapper

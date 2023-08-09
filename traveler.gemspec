@@ -19,8 +19,8 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = '>= 2.1'
 
   spec.add_runtime_dependency 'mustache', '~> 1'
-  spec.add_runtime_dependency 'thor', '~> 0.19'
+  spec.add_runtime_dependency 'thor', '~> 1'
 
-  spec.add_development_dependency 'bundler', '~> 1.8'
+  spec.add_development_dependency 'bundler', '~> 2.4.18'
   spec.add_development_dependency 'rake', '~> 10'
 end

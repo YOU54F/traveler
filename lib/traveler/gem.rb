@@ -21,7 +21,7 @@ module Traveler
     end
 
     def url
-      RELEASES_URL + URL_FORMAT % [
+      RELEASES_URL + URL_FORMAT + 'rel'-TRAVELING_RUBY_VERSION + URL_FORMAT % [
         TRAVELING_RUBY_VERSION,
         EFFECTIVE_RUBY_VERSION,
         @platform,

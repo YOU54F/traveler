@@ -30,11 +30,11 @@ module Traveler
     end
 
     def url
-      RELEASES_URL + name
+      RELEASES_URL + 'rel-' + TRAVELING_RUBY_VERSION + '/' + name
     end
 
     def download
-      return if File.exists?(name)
+      return if File.exist?(name)
       sh('"%s" -L --fail -O "%s"' % [CURL, url])
     end
 

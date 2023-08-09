@@ -5,7 +5,7 @@
 # - linux-x86_64
 # - osx
 #
-platforms 'linux-x86_64'
+platforms 'linux-arm64'
 
 # create handy wrappers to run your app.
 #
@@ -36,10 +36,10 @@ platforms 'linux-x86_64'
 #   wrapper :run22, '2.2.0', 'puma'
 #   wrapper :run21, '2.1.5', 'puma'
 #
-wrapper :run, '2.1.5', 'your command or file here'
+wrapper :run, '3.2.2', 'ruby -e \'puts "hello"\''
 
 # the folder Ruby runtimes will be installed into.
 folder_name 'traveler'
 
 # see versions at http://traveling-ruby.s3-us-west-2.amazonaws.com/list.html
-traveling_ruby_version '20150210'
+traveling_ruby_version '20230803'

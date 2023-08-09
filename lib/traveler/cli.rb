@@ -7,7 +7,7 @@ module Traveler
       bootstrap_gemfile    unless gemfile_exists?
       bootstrap_configfile unless configfile_exists?
       if gemfile_exists? && configfile_exists?
-        puts success(:ok.icon, "  Awesome! All files in place. You can run `traveler build` now!")
+        puts success(:ok.icon, '  Awesome! All files in place. You can run `traveler build` now!')
       end
     end
 
@@ -39,6 +39,7 @@ module Traveler
 
     def generate_wrappers
       return if WRAPPERS.empty?
+
       puts '', warn(:wrapping.icon, '  Wrapping...')
       Dir.chdir Traveler.appdir do
         WRAPPERS.each_pair do |name,(cmd_or_file,ruby_version)|
@@ -54,7 +55,7 @@ module Traveler
       FileUtils.mkdir_p(sandbox)
       Dir.chdir(sandbox) {yield}
     ensure
-      FileUtils.rm_rf(sandbox) if File.exists?(sandbox)
+      FileUtils.rm_rf(sandbox) if File.exist?(sandbox)
     end
 
     def bootstrap_configfile
@@ -68,11 +69,11 @@ module Traveler
     end
 
     def gemfile_exists?
-      File.exists?(GEMFILE_PATH)
+      File.exist?(GEMFILE_PATH)
     end
 
     def configfile_exists?
-      File.exists?(CONFIGFILE_PATH)
+      File.exist?(CONFIGFILE_PATH)
     end
   end
 end

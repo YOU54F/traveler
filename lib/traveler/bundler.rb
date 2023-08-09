@@ -16,9 +16,13 @@ module Traveler
 
     private
     def install
+      puts GEMFILE_PATH
       FileUtils.rm_rf('vendor')
       FileUtils.cp(GEMFILE_PATH, '.')
-      sh('BUNDLE_IGNORE_CONFIG=1 "%s" install --path vendor --without development' % BUNDLER)
+      sh('"%s" config set --local path vendor' % BUNDLER)
+      sh('"%s" config set --local without development' % BUNDLER)
+      sh('"%s" install' % BUNDLER)
+      sh('"%s" info ffi' % BUNDLER)
     end
 
     def clean

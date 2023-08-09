@@ -9,7 +9,7 @@ module Traveler
   extend Util
 
   BUCKET_ROOT = 'https://traveling-ruby.s3-us-west-2.amazonaws.com/'.freeze
-  RELEASES_URL = 'http://d6r77u77i8pq3.cloudfront.net/releases/'.freeze
+  RELEASES_URL = 'https://github.com/YOU54F/traveling-ruby/releases/download/'.freeze
 
   PWD = Dir.pwd.freeze
   SKEL_PATH = File.expand_path('../../skel', __FILE__).freeze
@@ -23,20 +23,25 @@ module Traveler
   GEMFILE_SKEL = skeldir(GEMFILE)
 
   RUBY_VERSIONS = %w[
-    2.1.5
-    2.2.0
+    2.6.10
+    3.0.6
+    3.1.4
+    3.2.2
+    3.3.0-preview1
   ].freeze
 
   TRAVELING_RUBY_VERSIONS = %w[
-    20150210
-    20150210
-    20150204
+    20230803
+    20230605
+    20230601
+    20230508
   ].freeze
 
   PLATFORMS = %w[
-    linux-x86
     linux-x86_64
-    osx
+    linux-arm64
+    osx-x86_64
+    osx-arm64
   ].freeze
 
   OPTED_PLATFORMS = []
