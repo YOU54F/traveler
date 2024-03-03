@@ -22,7 +22,6 @@ module Traveler
       sh('"%s" config set --local path vendor' % BUNDLER)
       sh('"%s" config set --local without development' % BUNDLER)
       sh('"%s" install' % BUNDLER)
-      sh('"%s" info ffi' % BUNDLER)
     end
 
     def clean
@@ -64,14 +63,21 @@ module Traveler
     end
 
     def no_local_gems
-      local_gems.keys.reject {|g| g == 'bundler'}.empty?
+      local_gems.keys.empty? == false
     end
 
     def remote_gems
       matcher = /traveling\-ruby\-gems\-#{TRAVELING_RUBY_VERSION}\-/
       replace = /.*#{matcher.source}|\.tar\.gz\Z/
-      scanner = /\A([\d|\.]+)\-([^\/].+)\/(.+)\-([\d|\.]+)\Z/
-      lines   = open(BUCKET_ROOT).read.scan(/<Key>([^<]+)<\/Key>/).flatten
+      scanner = /\A([\d|\.]+)\-([^\/].+)-([^\/].+)-([^\/].+)\Z/
+      lines = []
+      URI.open('https://github.com/YOU54F/traveling-ruby/releases/expanded_assets/rel-20240215') do |f|
+        f.each_line do |line|
+          if line =~ /traveling-ruby-gems/ && line.scan(%r{traveling-ruby-gems([^<]+)</span>}).flatten != [] 
+            lines.push("traveling-ruby-gems"+(line.scan(%r{traveling-ruby-gems([^<]+)</span>}).flatten[0]))
+          end
+        end
+      end
       lines.select {|l| l =~ matcher}.each_with_object({}) do |line,o|
         line.gsub!(replace, '')
         ruby_version, platform, gem_name, gem_version = line.scan(scanner).flatten

@@ -1,7 +1,7 @@
 module Traveler
   class Gem
     include Util
-    URL_FORMAT = 'traveling-ruby-gems-%s-%s-%s/%s'.freeze
+    URL_FORMAT = 'traveling-ruby-gems-%s-%s-%s-%s'.freeze
     EXTENSION = '.tar.gz'.freeze
 
     def initialize platform, name, version
@@ -21,7 +21,7 @@ module Traveler
     end
 
     def url
-      RELEASES_URL + URL_FORMAT + 'rel'-TRAVELING_RUBY_VERSION + URL_FORMAT % [
+      RELEASES_URL + 'rel-' + TRAVELING_RUBY_VERSION + '/' + URL_FORMAT % [
         TRAVELING_RUBY_VERSION,
         EFFECTIVE_RUBY_VERSION,
         @platform,
@@ -35,7 +35,12 @@ module Traveler
     end
 
     def extract
-      sh('"%s" -xzf "%s"' % [TAR, name])
+      sh('"%s" -xzf "%s"' % [TAR, URL_FORMAT % [
+        TRAVELING_RUBY_VERSION,
+        EFFECTIVE_RUBY_VERSION,
+        @platform,
+        name
+      ]])
     end
 
     def clean

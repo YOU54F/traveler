@@ -26,8 +26,8 @@ module Traveler
     2.6.10
     3.0.6
     3.1.4
-    3.2.2
-    3.3.0-preview1
+    3.2.3
+    3.3.0
   ].freeze
 
   TRAVELING_RUBY_VERSIONS = %w[
@@ -35,6 +35,7 @@ module Traveler
     20230605
     20230601
     20230508
+    20240215
   ].freeze
 
   PLATFORMS = %w[

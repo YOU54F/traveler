@@ -1,0 +1,40 @@
+name: Build
+
+on: 
+  push:
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ["ubuntu-latest","macos-12", "macos-14"]
+    runs-on: ${{ matrix.os }}
+    steps:
+    - uses: actions/checkout@v3
+    - uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 3.2.3
+    - name: Set up environment
+      run: bundle install
+    - name: build package
+      working-directory: test
+      run: |
+        ../bin/traveler build
+    - name: test version
+      working-directory: test
+      run: |
+        ./version
+    - name: test hello
+      working-directory: test
+      run: |
+        ./hello
+    - name: test pact
+      working-directory: test
+      run: |
+        ./pact

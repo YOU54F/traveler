@@ -1,14 +1,14 @@
 
 # indicate platforms you need your program to run on.
 # supported platforms:
-# - linux-arm64
+# - linux-x86
 # - linux-x86_64
-# - linux-arm64-musl
-# - linux-x86_64-musl
-# - osx-arm64
-# - osx-x86_64
+# - osx
 #
+platforms 'linux-x86_64'
 platforms 'linux-arm64'
+platforms 'osx-arm64'
+platforms 'osx-x86_64'
 
 # create handy wrappers to run your app.
 #
@@ -39,7 +39,9 @@ platforms 'linux-arm64'
 #   wrapper :run22, '2.2.0', 'puma'
 #   wrapper :run21, '2.1.5', 'puma'
 #
-wrapper :run, '3.2.3', 'ruby -e \'puts "hello"\''
+wrapper :version, '3.2.3', '--version'
+wrapper :hello, '3.2.3', 'hello.rb'
+wrapper :pact, '3.2.3', 'pact.rb'
 
 # the folder Ruby runtimes will be installed into.
 folder_name 'traveler'

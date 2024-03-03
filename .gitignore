@@ -12,3 +12,6 @@
 *.o
 *.a
 mkmf.log
+skel/Gemfile.lock
+test/traveler
+.DS_Store
